@@ -10,10 +10,10 @@ b.forEach((a)=>{
     if (a.indexOf('ACCOUNT')>-1||a.indexOf('AMOUNT')>-1) return
     if (a.indexOf('TOTAL')>-1) {z=a; flag=false; return}
     total+=Number(a.split('\t')[3])
-    c+="1~"+a.split('\t')[2]+"~1~"+a.split('\t')[3]+"~WAGES\n"
+    c+="1~"+a.split('\t')[2].padStart(15, '0')+"~1~"+a.split('\t')[3]+"~WAGES\n"
     
 })
-c+="109~"+sourceAccountNo+"~2~"+z.split('\t')[3]+"~WAGES"
+c+="109~"+sourceAccountNo.padStart(15, '0')+"~2~"+z.split('\t')[3]+"~WAGES"
 console.assert(total==z.split('\t')[3])
 
 // excel to salary
@@ -30,11 +30,11 @@ b.forEach((a)=>{
     sal=a.split('\t')[3].replace(',','')
     if (sal.trim()=='-') sal=0 
     total+=Number(sal)
-    c+="1~"+a.split('\t')[2]+"~1~"+Math.trunc(sal)+"~WAGES\n"
+    c+="1~"+a.split('\t')[2].padStart(15, '0')+"~1~"+Math.trunc(sal)+"~WAGES\n"
     
 })
 salF=z.split('\t')[3].replaceAll(',','')
-c+="109~"+sourceAccountNo+"~2~"+Math.trunc(Number(salF))+"~WAGES"
+c+="109~"+sourceAccountNo.padStart(15, '0')+"~2~"+Math.trunc(Number(salF))+"~WAGES"
 
 console.log(total)
 console.log(Number(z.split('\t')[3].replaceAll(',','')))
