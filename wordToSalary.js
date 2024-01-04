@@ -30,10 +30,12 @@ b.forEach((a)=>{
     sal=a.split('\t')[3].replace(',','')
     if (sal.trim()=='-') sal=0 
     total+=Number(sal)
-    c+="1~"+a.split('\t')[2]+"~1~"+sal+"~WAGES\n"
+    c+="1~"+a.split('\t')[2]+"~1~"+Math.trunc(sal)+"~WAGES\n"
     
 })
-c+="109~"+sourceAccountNo+"~2~"+z.split('\t')[3]+"~WAGES"
+salF=z.split('\t')[3].replaceAll(',','')
+c+="109~"+sourceAccountNo+"~2~"+Math.trunc(Number(salF))+"~WAGES"
+
 console.log(total)
 console.log(Number(z.split('\t')[3].replaceAll(',','')))
 console.assert(total==Number(z.split('\t')[3].replaceAll(',','')))
